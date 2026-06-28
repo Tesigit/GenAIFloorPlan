@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://genaifloorplan-production.up.railway.app/$1"
+    }
+  ]
+}
