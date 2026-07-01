@@ -20,7 +20,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, onSuccess }) => {
         setError('');
         setLoading(true);
         try {
-            const endpoint = mode === 'signup' ? '/api/auth/register' : '/api/auth/login';
+            const endpoint = mode === 'signup' ? `${import.meta.env.VITE_API_URL}/auth/register`
+    : `${import.meta.env.VITE_API_URL}/auth/login`;
             const body = mode === 'signup'
                 ? { name, email, password }
                 : { email, password };
