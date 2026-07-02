@@ -96,15 +96,22 @@ function App() {
     };
     // setLastRequest(reqBody);
 
-    try {
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (user?.token) headers['Authorization'] = `Bearer ${user.token}`;
+   try {
+  const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+  if (user?.token) headers['Authorization'] = `Bearer ${user.token}`;
 
-      const res = await fetch('/api/generate', {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(reqBody),
-      });
+  const API =
+    window.location.hostname === 'localhost'
+      ? 'http://127.0.0.1:8000'
+      : 'https://genaifloorplanbackend-production.up.railway.app';
+
+  const res = await fetch(`${API}/generate`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(reqBody),
+  });
+
+  
       if (!res.ok) {
         const errData = await res.json().catch(() => ({}));
         throw new Error(errData.detail || `Server error ${res.status}`);
